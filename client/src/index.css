@@ -1,0 +1,261 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.2s ease-out forwards;
+}
+
+@layer base {
+  :root {
+    /* Light mode - Clean white with high contrast */
+    --background: 0 0% 100%; /* Pure white background */
+    --foreground: 0 0% 10%; /* Near-black text for maximum contrast */
+    
+    --card: 0 0% 98%; /* Slightly off-white for card backgrounds */
+    --card-foreground: 0 0% 10%; /* Dark text on cards */
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    
+    --primary: 187 100% 42%; /* Bright cyan/blue for primary actions */
+    --primary-foreground: 0 0% 100%; /* White text on primary color */
+    
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 0 0% 10%;
+    
+    --muted: 210 20% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+    --accent: 187 70% 94%;
+    --accent-foreground: 187 100% 25%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 187 100% 42%;
+    
+    --radius: 0.5rem;
+  }
+  
+  .dark {
+    /* Dark mode - Deep blue-gray with high contrast text */
+    --background: 222 47% 11%; /* Deep blue-gray background */
+    --foreground: 210 40% 98%; /* Very light gray text */
+    
+    --card: 222 47% 14%; /* Slightly lighter cards */
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    
+    --primary: 187 100% 42%; /* Keep primary consistent across modes */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 217 33% 20%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217 33% 20%;
+    --muted-foreground: 210 40% 90%; /* Increased contrast */
+    
+    --accent: 187 50% 20%;
+    --accent-foreground: 187 100% 80%; /* Increased contrast */
+    
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 187 100% 42%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Text styles with improved visibility and contrast */
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-gray-900 dark:text-gray-50 font-bold;
+  }
+  
+  p, span {
+    @apply text-gray-800 dark:text-gray-200;
+  }
+  
+  /* Base div text color control - not applying globally to avoid affecting containers */
+  .text-content {
+    @apply text-gray-800 dark:text-gray-200;
+  }
+  
+  /* Navigation styling with enhanced contrast */
+  .nav-link {
+    @apply text-gray-800 dark:text-gray-100 hover:text-primary dark:hover:text-primary transition-colors font-medium;
+  }
+  
+  /* Button enhancements with better visibility */
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90 transition-colors font-medium shadow-sm;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors font-medium shadow-sm;
+  }
+  
+  /* Form elements with better contrast */
+  .form-card {
+    @apply bg-white dark:bg-gray-800 border shadow-md rounded-lg overflow-hidden;
+  }
+
+  .form-input {
+    @apply bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50 border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary focus:border-primary;
+  }
+
+  .form-label {
+    @apply text-gray-900 dark:text-gray-50 font-medium mb-1 block;
+  }
+
+  /* Authentication forms */
+  .auth-form {
+    @apply bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700;
+  }
+
+  /* Tables with better visibility */
+  table {
+    @apply border-collapse w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700;
+  }
+
+  th {
+    @apply bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 text-left font-semibold border-b border-gray-200 dark:border-gray-600;
+  }
+
+  td {
+    @apply p-3 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200;
+  }
+
+  /* Form container with distinct styling */
+  .form-container {
+    @apply bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700;
+  }
+
+  /* Data display with enhanced visibility */
+  .high-contrast-text {
+    @apply text-primary dark:text-primary font-semibold;
+  }
+  
+  /* Money amounts with distinctive styling */
+  .transaction-amount {
+    @apply font-semibold text-green-600 dark:text-green-400;
+  }
+  
+  .transaction-amount-negative {
+    @apply font-semibold text-red-600 dark:text-red-400;
+  }
+  
+  /* Form elements with improved contrast */
+  input, textarea, select {
+    @apply bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-50 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-primary focus:border-primary;
+  }
+  
+  /* Card components with consistent styling */
+  .dashboard-card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 p-5;
+  }
+  
+  /* Better contrast for tables */
+  th {
+    @apply bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-50 p-3 text-left font-semibold border-b border-gray-200 dark:border-gray-600;
+  }
+
+  td {
+    @apply p-3 border-b border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-100;
+  }
+  
+  /* Footer styling */
+  .site-footer {
+    @apply bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 py-8 border-t border-gray-200 dark:border-gray-700;
+  }
+  
+  /* Stats and numbers with better visibility */
+  .stat-value {
+    @apply text-2xl font-bold text-gray-900 dark:text-white;
+  }
+  
+  .stat-label {
+    @apply text-sm font-medium text-gray-700 dark:text-gray-300;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 640px) {
+    .responsive-container {
+      @apply px-4 py-4;
+    }
+    
+    .responsive-card {
+      @apply p-4;
+    }
+    
+    .responsive-text-sm {
+      @apply text-sm;
+    }
+    
+    .responsive-heading {
+      @apply text-xl;
+    }
+  }
+  
+  /* Transfer method cards with improved mobile design */
+  .transfer-method-card {
+    @apply flex flex-col items-center justify-center p-4 rounded-md border border-gray-200 dark:border-gray-700
+    bg-white dark:bg-gray-800 cursor-pointer transition-all duration-200 gap-2 text-gray-900 dark:text-gray-100;
+  }
+  
+  .transfer-method-card:hover {
+    @apply border-primary/50 dark:border-primary/50 -translate-y-0.5 shadow-md;
+  }
+  
+  .transfer-method-card.active {
+    @apply border-primary dark:border-primary bg-primary/10 dark:bg-primary/20 font-medium;
+  }
+  
+  /* Mobile-friendly cards and layouts */
+  @media (max-width: 640px) {
+    .transfer-method-card {
+      @apply p-3;
+    }
+    
+    .transfer-method-card svg {
+      @apply h-4 w-4;
+    }
+    
+    .transfer-method-card span {
+      @apply text-xs;
+    }
+    
+    .form-container {
+      @apply p-4;
+    }
+    
+    .dashboard-card {
+      @apply p-4;
+    }
+  }
+}
